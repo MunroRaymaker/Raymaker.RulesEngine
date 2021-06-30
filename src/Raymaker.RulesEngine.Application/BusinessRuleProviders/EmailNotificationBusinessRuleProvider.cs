@@ -15,7 +15,8 @@
             }
 
             if (product.MembershipType == "Basic" ||
-                product.MembershipType == "Upgrade")
+                product.MembershipType == "Upgrade" ||
+                product.MembershipType == "VIP")
             {
                 (order.Product as MembershipProduct).EmailsSent += 1;
                 return true;

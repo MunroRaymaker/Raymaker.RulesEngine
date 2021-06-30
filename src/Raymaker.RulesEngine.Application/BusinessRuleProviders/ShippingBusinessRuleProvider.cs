@@ -1,6 +1,6 @@
 ﻿namespace Raymaker.RulesEngine.Application.BusinessRuleProviders
 {
-    public class PhysicalProductBusinessRuleProvider : IBusinessRuleProvider
+    public class ShippingBusinessRuleProvider : IBusinessRuleProvider
     {
         public string NameRequirement { get; } = "PhysicalProduct";
 

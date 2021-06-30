@@ -79,7 +79,7 @@ namespace Raymaker.RulesEngine.UnitTests
             sut.Process(order);
 
             // Assert
-            (order.Product as MembershipProduct).MembershipType.Should().Be("Upgrade");
+            (order.Product as MembershipProduct).MembershipType.Should().Be("VIP");
         }
 
         /// <summary>

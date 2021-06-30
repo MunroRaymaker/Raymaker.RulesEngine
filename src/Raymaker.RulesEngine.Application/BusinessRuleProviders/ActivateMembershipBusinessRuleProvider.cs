@@ -1,6 +1,6 @@
 ﻿namespace Raymaker.RulesEngine.Application.BusinessRuleProviders
 {
-    public class MembershipBusinessRuleProvider : IBusinessRuleProvider
+    public class ActivateMembershipBusinessRuleProvider : IBusinessRuleProvider
     {
         public string NameRequirement => "Membership";
 
