@@ -26,7 +26,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order{ Product = new Video() };
 
             // Act
-            sut.Process(ref order);
+            sut.Process(order);
 
             // Assert
             order.PackingSlip.Should().Contain("shipping");
@@ -43,7 +43,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order{ Product = new Book() };
 
             // Act
-            sut.Process(ref order);
+            sut.Process(order);
 
             // Assert
             order.PackingSlip.Should().Contain("royalty");
@@ -60,7 +60,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order{ Product = new MembershipProduct() };
 
             // Act
-            sut.Process(ref order);
+            sut.Process(order);
 
             // Assert
             (order.Product as MembershipProduct).IsActive.Should().BeTrue();
@@ -76,7 +76,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order{ Product = new MembershipProduct{ MembershipType = "Upgrade" } };
 
             // Act
-            sut.Process(ref order);
+            sut.Process(order);
 
             // Assert
             (order.Product as MembershipProduct).MembershipType.Should().Be("Upgrade");
@@ -93,7 +93,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order{ Product = new MembershipProduct{ MembershipType = "Upgrade", MemberEmail = "test@test.com" } };
 
             // Act
-            sut.Process(ref order);
+            sut.Process(order);
 
             // Assert
             (order.Product as MembershipProduct).EmailsSent.Should().BeGreaterThan(0);
@@ -111,7 +111,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order{ Product = new Video() };
 
             // Act
-            sut.Process(ref order);
+            sut.Process(order);
 
             // Assert
             order.PackingSlip.Should().Contain("First Aid");
@@ -128,7 +128,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order{ Product = new Book() };
 
             // Act
-            sut.Process(ref order);
+            sut.Process(order);
 
             // Assert
             order.Payment.Should().NotBeNull();

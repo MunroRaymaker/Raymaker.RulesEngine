@@ -22,7 +22,8 @@ namespace Raymaker.RulesEngine.Console
             var rules = new BusinessRuleProviderFactory().GetProviders();
 
             // Execute rules
-
+            var service = new OrderProcessingService(rules);
+            service.Process(order);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Raymaker.RulesEngine.Application
             this.rules = rules;
         }
 
-        public void Process(ref Order order)
+        public void Process(Order order)
         {
             foreach (IBusinessRuleProvider rule in rules)
             {
