@@ -6,9 +6,14 @@
 
         public bool Process(ref Order order)
         {
-            if(order.Product.GetType() == typeof(Book) || 
+            if (order.Product.GetType() == typeof(Book) ||
                order.Product.GetType() == typeof(Video))
             {
+                if (!string.IsNullOrEmpty(order.PackingSlip) && 
+                    order.PackingSlip.Contains("shipping"))
+                {
+                    return true;
+                }
                 order.PackingSlip += "shipping";
                 return true;
             }
