@@ -8,7 +8,7 @@ namespace Raymaker.RulesEngine.Console
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello World!");
+            System.Console.WriteLine("Business Rules Engine Sample App");
 
             // Build an order
             var order = new Order
@@ -24,6 +24,9 @@ namespace Raymaker.RulesEngine.Console
             // Execute rules
             var service = new OrderProcessingService(rules);
             service.Process(order);
+
+            System.Console.WriteLine("Rules processed");
+            System.Console.WriteLine("Emails sent: " + (order.Product as MembershipProduct).EmailsSent);
         }
     }
 }
