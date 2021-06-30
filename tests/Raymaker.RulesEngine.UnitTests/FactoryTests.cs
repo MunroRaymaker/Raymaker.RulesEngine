@@ -20,7 +20,7 @@ namespace Raymaker.RulesEngine.UnitTests
             };
 
             // Act
-            var result = provider.Process(ref order);
+            var result = provider.Process(order);
 
             // Assert
             result.Should().BeTrue();
@@ -37,7 +37,7 @@ namespace Raymaker.RulesEngine.UnitTests
             };
 
             // Act
-            var result = provider.Process(ref order);
+            var result = provider.Process(order);
 
             // Assert
             result.Should().BeTrue();

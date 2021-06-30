@@ -20,7 +20,7 @@ namespace Raymaker.RulesEngine.Application
         {
             foreach (IBusinessRuleProvider rule in rules)
             {
-                rule.Process(ref order);
+                rule.Process(order);
             }
         }
     }

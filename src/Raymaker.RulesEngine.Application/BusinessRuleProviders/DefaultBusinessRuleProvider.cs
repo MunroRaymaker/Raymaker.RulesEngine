@@ -4,7 +4,7 @@
     {
         public string NameRequirement => string.Empty;
 
-        public bool Process(ref Order order)
+        public bool Process(Order order)
         {
             return true;
         }

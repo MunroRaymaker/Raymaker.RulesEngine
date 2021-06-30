@@ -4,7 +4,7 @@
     {
         public string NameRequirement { get; } = "PhysicalProduct";
 
-        public bool Process(ref Order order)
+        public bool Process(Order order)
         {
             if (order.Product.GetType() == typeof(Book) ||
                order.Product.GetType() == typeof(Video))
