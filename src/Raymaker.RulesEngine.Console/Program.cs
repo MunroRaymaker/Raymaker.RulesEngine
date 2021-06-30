@@ -15,7 +15,7 @@ namespace Raymaker.RulesEngine.Console
             {
                 PackingSlip = "",
                 Payment = new Payment(),
-                Product = new MembershipProduct { IsActive = true, MemberEmail = "", MenbershipType = "Basic", Name = "BasicMembership", UnitPrice = 100 }
+                Product = new MembershipProduct { IsActive = true, MemberEmail = "", MembershipType = "Basic", Name = "BasicMembership", UnitPrice = 100 }
             };
 
             // Get business rules

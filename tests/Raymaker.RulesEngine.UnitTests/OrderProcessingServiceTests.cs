@@ -67,6 +67,22 @@ namespace Raymaker.RulesEngine.UnitTests
         }
 
         /// <summary>
+        /// Rule: If the payment is an upgrade to a membership, apply the upgrade.
+        /// </summary>
+        [Fact]
+        public void Should_upgrade_membership_when_order_is_membershipupgrade()
+        {
+            // Arrange
+            var order = new Order{ Product = new MembershipProduct{ MembershipType = "Upgrade" } };
+
+            // Act
+            sut.Process(ref order);
+
+            // Assert
+            (order.Product as MembershipProduct).MembershipType.Should().Be("Upgrade");
+        }
+
+        /// <summary>
         /// Rule: If the payment is for a membership or upgrade, 
         /// e-mail the owner and inform them of the activation/upgrade.
         /// </summary>
@@ -74,7 +90,7 @@ namespace Raymaker.RulesEngine.UnitTests
         public void Should_send_email_when_order_has_membershipupgrade()
         {
             // Arrange
-            var order = new Order{ Product = new MembershipProduct{ MenbershipType = "Upgrade", MemberEmail = "test@test.com" } };
+            var order = new Order{ Product = new MembershipProduct{ MembershipType = "Upgrade", MemberEmail = "test@test.com" } };
 
             // Act
             sut.Process(ref order);

@@ -4,6 +4,7 @@
     {
         public string NameRequirement { get; } = "PhysicalProduct";
 
+        // If the payment is for a physical product, generate a packing slip for shipping.
         public bool Process(Order order)
         {
             if (order.Product.GetType() == typeof(Book) ||
