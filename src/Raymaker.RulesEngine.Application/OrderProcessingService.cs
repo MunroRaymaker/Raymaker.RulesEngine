@@ -19,7 +19,8 @@ namespace Raymaker.RulesEngine.Application
         {
             foreach (IBusinessRuleProvider rule in rules)
             {
-                rule.Process(order);
+                var (isSatisfied, message) = rule.Process(order);
+                System.Console.WriteLine(message);
             }
         }
     }

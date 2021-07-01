@@ -5,17 +5,17 @@
         public string NameRequirement => "EmailNotification";
 
         // If the payment is for a membership or upgrade, e-mail the owner and inform them of the activation/upgrade.
-        public bool Process(Order order)
+        public (bool isSatisfied, string message) Process(Order order)
         {
             var product = order.Product as Membership;
 
             if (product == null)
             {
-                return false;
+                return (false, $"{NameRequirement}: No action");
             }
 
             (order.Product as Membership).EmailsSent += 1;
-            return true;
+            return (true, $"{NameRequirement}: Email was sent");
         }
     }
 }

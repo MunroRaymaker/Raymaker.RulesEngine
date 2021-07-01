@@ -4,9 +4,9 @@
     {
         public string NameRequirement => string.Empty;
 
-        public bool Process(Order order)
+        public (bool isSatisfied, string message) Process(Order order)
         {
-            return true;
+            return (true, $"{NameRequirement}: No action");
         }
     }
 }

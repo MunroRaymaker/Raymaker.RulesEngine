@@ -4,16 +4,16 @@
     {
         public string NameRequirement => "Commission";
 
-        public bool Process(Order order)
+        public (bool isSatisfied, string message) Process(Order order)
         {
             if (order.Product.GetType() == typeof(Book) ||
                 order.Product.GetType() == typeof(Video))
             {
                 order.Payment = new Payment();
-                return true;
+                return (true, $"{NameRequirement}: Added commission payment");
             }
 
-            return false;
+            return (false, $"{NameRequirement}: No action");
         }
     }
 }

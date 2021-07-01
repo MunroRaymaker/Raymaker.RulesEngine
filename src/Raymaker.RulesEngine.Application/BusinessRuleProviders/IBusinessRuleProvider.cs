@@ -2,7 +2,7 @@
 {
     public interface IBusinessRuleProvider
     {
-        public bool Process(Order order);
+        public (bool isSatisfied, string message) Process(Order order);
         public string NameRequirement { get; }
     }
 }

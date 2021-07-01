@@ -20,10 +20,10 @@ namespace Raymaker.RulesEngine.UnitTests
             };
 
             // Act
-            var result = provider.Process(order);
+            var (isSatisfied, message) = provider.Process(order);
 
             // Assert
-            result.Should().BeTrue();
+            isSatisfied.Should().BeTrue();
         }
 
         [Fact]
@@ -37,10 +37,10 @@ namespace Raymaker.RulesEngine.UnitTests
             };
 
             // Act
-            var result = provider.Process(order);
+            var (isSatisfied, message) = provider.Process(order);
 
             // Assert
-            result.Should().BeTrue();
+            isSatisfied.Should().BeTrue();
         }
     }
 }

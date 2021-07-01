@@ -5,15 +5,15 @@
         public string NameRequirement => "Safety";
 
         // If the payment is for the video “Learning to Ski,” add a free “First Aid” video to the packing slip).
-        public bool Process(Order order)
+        public (bool isSatisfied, string message) Process(Order order)
         {
             if (order.Product.GetType() == typeof(Video) &&
                 order.Product?.Name == "Learning to Ski")
             {
                 order.PackingSlip += "First Aid";
-                return true;
+                return (true, $"{NameRequirement}: Added First Aid video");
             }
-            return false;
+            return (false, $"{NameRequirement}: No action");
         }
     }
 }
