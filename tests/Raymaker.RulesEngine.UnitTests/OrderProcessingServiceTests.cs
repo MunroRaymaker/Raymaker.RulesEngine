@@ -57,13 +57,13 @@ namespace Raymaker.RulesEngine.UnitTests
         public void Should_activate_membership_when_order_has_membership()
         {
             // Arrange
-            var order = new Order{ Product = new MembershipProduct() };
+            var order = new Order{ Product = new Membership() };
 
             // Act
             sut.Process(order);
 
             // Assert
-            (order.Product as MembershipProduct).IsActive.Should().BeTrue();
+            (order.Product as Membership).IsActive.Should().BeTrue();
         }
 
         /// <summary>
@@ -73,13 +73,13 @@ namespace Raymaker.RulesEngine.UnitTests
         public void Should_upgrade_membership_when_order_is_membershipupgrade()
         {
             // Arrange
-            var order = new Order{ Product = new MembershipProduct{ MembershipType = "Upgrade" } };
+            var order = new Order{ Product = new MembershipUpgrade() };
 
             // Act
             sut.Process(order);
 
             // Assert
-            (order.Product as MembershipProduct).MembershipType.Should().Be("VIP");
+            (order.Product as Membership).MembershipType.Should().Be(MembershipType.VIP);
         }
 
         /// <summary>
@@ -90,13 +90,13 @@ namespace Raymaker.RulesEngine.UnitTests
         public void Should_send_email_when_order_has_membershipupgrade()
         {
             // Arrange
-            var order = new Order{ Product = new MembershipProduct{ MembershipType = "Upgrade", MemberEmail = "test@test.com" } };
+            var order = new Order{ Product = new MembershipUpgrade{ MemberEmail = "test@test.com" } };
 
             // Act
             sut.Process(order);
 
             // Assert
-            (order.Product as MembershipProduct).EmailsSent.Should().BeGreaterThan(0);
+            (order.Product as Membership).EmailsSent.Should().BeGreaterThan(0);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Raymaker.RulesEngine.UnitTests
         public void Should_process_extra_item_when_order_has_skiing_video()
         {
             // Arrange
-            var order = new Order{ Product = new Video() };
+            var order = new Order{ Product = new Video{ Name = "Learning to Ski" } };
 
             // Act
             sut.Process(order);

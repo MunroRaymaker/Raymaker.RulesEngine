@@ -15,7 +15,7 @@ namespace Raymaker.RulesEngine.Console
             {
                 PackingSlip = "",
                 Payment = new Payment(),
-                Product = new MembershipProduct { IsActive = true, MemberEmail = "", MembershipType = "Basic", Name = "BasicMembership", UnitPrice = 100 }
+                Product = new Membership { IsActive = true, MemberEmail = "", MembershipType = "Basic", Name = "BasicMembership", UnitPrice = 100 }
             };
 
             // Get business rules
@@ -26,7 +26,7 @@ namespace Raymaker.RulesEngine.Console
             service.Process(order);
 
             System.Console.WriteLine("Rules processed");
-            System.Console.WriteLine("Emails sent: " + (order.Product as MembershipProduct).EmailsSent);
+            System.Console.WriteLine("Emails sent: " + (order.Product as Membership).EmailsSent);
         }
     }
 }

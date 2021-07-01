@@ -7,9 +7,9 @@
         // If the payment is for a membership, activate that membership.
         public bool Process(Order order)
         {
-            if (order.Product.GetType() == typeof(MembershipProduct))
+            if (order.Product.GetType() == typeof(Membership))
             {
-                (order.Product as MembershipProduct).IsActive = true;
+                (order.Product as Membership).IsActive = true;
                 return true;
             }
 
