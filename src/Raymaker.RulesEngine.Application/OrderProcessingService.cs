@@ -1,9 +1,5 @@
 ﻿using Raymaker.RulesEngine.Application.BusinessRuleProviders;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Raymaker.RulesEngine.Application
 {
@@ -16,6 +12,9 @@ namespace Raymaker.RulesEngine.Application
             this.rules = rules;
         }
 
+        /// <summary>
+        /// Assumes a payment has taken place so we process the order.
+        /// </summary>
         public void Process(Order order)
         {
             foreach (IBusinessRuleProvider rule in rules)
