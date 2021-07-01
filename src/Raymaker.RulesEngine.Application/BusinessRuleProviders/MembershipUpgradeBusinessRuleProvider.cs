@@ -2,6 +2,13 @@
 {
     public class MembershipUpgradeBusinessRuleProvider : IBusinessRuleProvider
     {
+        private readonly IUserService userService;
+
+        public MembershipUpgradeBusinessRuleProvider(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         public string NameRequirement => "MembershipUpgrade";
 
         // If the payment is an upgrade to a membership, apply the upgrade

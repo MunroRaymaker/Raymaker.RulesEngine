@@ -2,6 +2,13 @@
 {
     public class BookProductBusinessRuleProvider : IBusinessRuleProvider
     {
+        private readonly IUserService userService;
+
+        public BookProductBusinessRuleProvider(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         public string NameRequirement => "BookProduct";
 
         // If the payment is for a book, create a duplicate packing slip for the royalty department.

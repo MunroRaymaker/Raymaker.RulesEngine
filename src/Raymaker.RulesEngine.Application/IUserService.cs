@@ -1,0 +1,8 @@
+﻿namespace Raymaker.RulesEngine.Application
+{
+    public interface IUserService
+    {
+        User GetUser(string userName);
+        bool UpdateUser(User user);
+    }
+}

@@ -2,6 +2,13 @@
 {
     public class SafetyBusinessRuleProvider : IBusinessRuleProvider
     {
+        private readonly IUserService userService;
+
+        public SafetyBusinessRuleProvider(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         public string NameRequirement => "Safety";
 
         // If the payment is for the video “Learning to Ski,” add a free “First Aid” video to the packing slip).

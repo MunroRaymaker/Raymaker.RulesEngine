@@ -1,4 +1,5 @@
 using FluentAssertions;
+using NSubstitute;
 using Raymaker.RulesEngine.Application;
 using Raymaker.RulesEngine.Application.BusinessRuleProviders;
 using Xunit;
@@ -7,7 +8,14 @@ namespace Raymaker.RulesEngine.UnitTests
 {
     public class FactoryTests
     {
-        private readonly BusinessRuleProviderFactory factory = new BusinessRuleProviderFactory();
+        private readonly BusinessRuleProviderFactory factory;
+        private readonly UserService userService;
+
+        public FactoryTests()
+        {
+            userService = Substitute.For<UserService>();
+            factory = new BusinessRuleProviderFactory(userService);
+        }
 
         [Fact]
         public void when_order_has_book_processes_rule()

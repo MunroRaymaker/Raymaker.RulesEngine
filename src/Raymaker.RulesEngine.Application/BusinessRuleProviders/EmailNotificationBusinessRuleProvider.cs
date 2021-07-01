@@ -2,6 +2,13 @@
 {
     public class EmailNotificationBusinessRuleProvider : IBusinessRuleProvider
     {
+        private readonly IUserService userService;
+
+        public EmailNotificationBusinessRuleProvider(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         public string NameRequirement => "EmailNotification";
 
         // If the payment is for a membership or upgrade, e-mail the owner and inform them of the activation/upgrade.

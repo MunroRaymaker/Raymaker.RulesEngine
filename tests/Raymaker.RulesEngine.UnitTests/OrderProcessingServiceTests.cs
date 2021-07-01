@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using NSubstitute;
 using Raymaker.RulesEngine.Application;
 using Raymaker.RulesEngine.Application.BusinessRuleProviders;
 using Xunit;
@@ -8,10 +9,12 @@ namespace Raymaker.RulesEngine.UnitTests
     public class OrderProcessingServiceTests
     {
         private readonly OrderProcessingService sut;
+        private readonly IUserService userService = Substitute.For<IUserService>();
+        private readonly IUserRepository userRepository = Substitute.For<IUserRepository>();
 
         public OrderProcessingServiceTests()
         {
-            var providers = new BusinessRuleProviderFactory();
+            var providers = new BusinessRuleProviderFactory(userService);
             sut = new OrderProcessingService(providers.GetProviders());
         }
 

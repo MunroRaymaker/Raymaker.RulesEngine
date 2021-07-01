@@ -9,7 +9,7 @@ namespace Raymaker.RulesEngine.Application.BusinessRuleProviders
     {
         private readonly IReadOnlyDictionary<string, IBusinessRuleProvider> providers;
 
-        public BusinessRuleProviderFactory()
+        public BusinessRuleProviderFactory(IUserService userService)
         {
             var businessRuleProviderType = typeof(IBusinessRuleProvider);
             this.providers = businessRuleProviderType.Assembly.ExportedTypes
@@ -21,7 +21,7 @@ namespace Raymaker.RulesEngine.Application.BusinessRuleProviders
                      var parameterlessCtor = x.GetConstructors().SingleOrDefault(c => c.GetParameters().Length == 0);
                     return parameterlessCtor is not null
                         ? Activator.CreateInstance(x)
-                        : null; // Fill with parameters if constructor has arguments
+                        : Activator.CreateInstance(x, userService); // Fill with parameters if constructor has arguments
                 })
                 .Cast<IBusinessRuleProvider>()
                 .ToImmutableDictionary(k => k.NameRequirement, v => v);

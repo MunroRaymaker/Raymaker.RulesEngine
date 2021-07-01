@@ -2,6 +2,13 @@
 {
     public class CommissionPaymentBusinessRuleProvider : IBusinessRuleProvider
     {
+        private readonly IUserService userService;
+
+        public CommissionPaymentBusinessRuleProvider(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         public string NameRequirement => "Commission";
 
         public (bool isSatisfied, string message) Process(Order order)

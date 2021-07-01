@@ -2,6 +2,13 @@
 {
     public class ActivateMembershipBusinessRuleProvider : IBusinessRuleProvider
     {
+        private readonly IUserService userService;
+
+        public ActivateMembershipBusinessRuleProvider(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         public string NameRequirement => "Membership";
 
         // If the payment is for a membership, activate that membership.

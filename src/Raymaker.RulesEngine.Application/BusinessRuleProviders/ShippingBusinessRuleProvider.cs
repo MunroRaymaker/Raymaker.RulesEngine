@@ -2,6 +2,13 @@
 {
     public class ShippingBusinessRuleProvider : IBusinessRuleProvider
     {
+        private readonly IUserService userService;
+
+        public ShippingBusinessRuleProvider(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         public string NameRequirement { get; } = "PhysicalProduct";
 
         // If the payment is for a physical product, generate a packing slip for shipping.
