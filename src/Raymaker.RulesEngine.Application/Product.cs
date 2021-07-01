@@ -19,6 +19,7 @@
     }
     public enum MembershipType
     {
+        NotMember,
         Basic,
         VIP
     }
