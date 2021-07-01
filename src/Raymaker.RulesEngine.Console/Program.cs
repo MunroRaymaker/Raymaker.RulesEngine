@@ -1,6 +1,5 @@
 ﻿using Raymaker.RulesEngine.Application;
 using Raymaker.RulesEngine.Application.BusinessRuleProviders;
-using System;
 
 namespace Raymaker.RulesEngine.Console
 {
@@ -15,7 +14,7 @@ namespace Raymaker.RulesEngine.Console
             {
                 PackingSlip = "",
                 Payment = new Payment(),
-                Product = new Membership { IsActive = true, MemberEmail = "", MembershipType = "Basic", Name = "BasicMembership", UnitPrice = 100 }
+                Product = new Membership { IsActive = true, MemberEmail = "", Name = "BasicMembership", UnitPrice = 100 }
             };
 
             // Get business rules
