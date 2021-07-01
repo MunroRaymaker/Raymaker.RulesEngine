@@ -22,7 +22,6 @@ namespace Raymaker.RulesEngine.Console
             service.Process(order);
 
             System.Console.WriteLine("Rules processed");
-            System.Console.WriteLine("Emails sent: " + (order.Product as Membership).EmailsSent);
         }
     }
 }

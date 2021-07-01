@@ -21,7 +21,12 @@
                 return (false, $"{NameRequirement}: No action");
             }
 
-            (order.Product as Membership).EmailsSent += 1;
+            var user = userService.GetUser(product.MemberName);
+            user.EmailsSent += 1;
+
+            // Send email
+            this.userService.UpdateUser(user);
+
             return (true, $"{NameRequirement}: Email was sent");
         }
     }

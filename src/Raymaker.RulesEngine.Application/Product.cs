@@ -10,8 +10,8 @@
     {
         public bool IsActive { get; set; }
         public MembershipType MembershipType { get; set; }
-        public string MemberEmail { get; set; } // TODO: Not part of membership - should be part of a user class.
-        public int EmailsSent { get; set; } // TODO: Not part of membership - should be part of a user class.
+        public string MemberEmail { get; set; }
+        public string MemberName { get; set; }
     }
     public class MembershipUpgrade : Membership
     {
