@@ -16,7 +16,7 @@
         {
             if (order.Product.GetType() == typeof(Book) ||
                order.Product.GetType() == typeof(Video))
-            {
+            {               
                 if (!string.IsNullOrEmpty(order.PackingSlip) && 
                     order.PackingSlip.Contains("shipping"))
                 {

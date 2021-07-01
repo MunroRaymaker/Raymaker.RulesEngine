@@ -10,12 +10,10 @@ namespace Raymaker.RulesEngine.UnitTests
     {
         private readonly OrderProcessingService sut;
         private readonly IUserService userService = Substitute.For<IUserService>();
-        private readonly IUserRepository userRepository = Substitute.For<IUserRepository>();
-
+        
         public OrderProcessingServiceTests()
         {
-            var providers = new BusinessRuleProviderFactory(userService);
-            sut = new OrderProcessingService(providers.GetProviders());
+            sut = new OrderProcessingService(userService);
         }
 
         /// <summary>
@@ -61,6 +59,7 @@ namespace Raymaker.RulesEngine.UnitTests
         {
             // Arrange
             var order = new Order{ Product = new Membership() };
+            this.userService.GetUser("foo").Returns(new User{ MembershipType = MembershipType.NotMember });
 
             // Act
             sut.Process(order);

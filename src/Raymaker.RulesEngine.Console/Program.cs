@@ -17,11 +17,8 @@ namespace Raymaker.RulesEngine.Console
                 Product = new Membership { IsActive = true, MemberEmail = "", Name = "BasicMembership", UnitPrice = 100 }
             };
 
-            // Get business rules
-            var rules = new BusinessRuleProviderFactory(new UserService()).GetProviders();
-
             // Execute rules
-            var service = new OrderProcessingService(rules);
+            var service = new OrderProcessingService(new UserService());
             service.Process(order);
 
             System.Console.WriteLine("Rules processed");

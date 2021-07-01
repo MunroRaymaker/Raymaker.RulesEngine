@@ -6,10 +6,12 @@ namespace Raymaker.RulesEngine.Application
     public class OrderProcessingService
     {
         private readonly IEnumerable<IBusinessRuleProvider> rules;
+        private readonly BusinessRuleProviderFactory businessRuleProviderFactory;
 
-        public OrderProcessingService(IEnumerable<IBusinessRuleProvider> rules)
+        public OrderProcessingService(IUserService userService)
         {
-            this.rules = rules;
+            this.businessRuleProviderFactory = new BusinessRuleProviderFactory(userService);
+            this.rules = businessRuleProviderFactory.GetProviders();
         }
 
         /// <summary>
