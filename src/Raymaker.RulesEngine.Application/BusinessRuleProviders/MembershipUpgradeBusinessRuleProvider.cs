@@ -17,8 +17,12 @@
             if (order.Product.GetType() == typeof(MembershipUpgrade))
             {
                 // Process upgrade
-                // TODO This should be set on a user class.
-                (order.Product as Membership).MembershipType = MembershipType.VIP;
+                var product = (MembershipUpgrade)order.Product;
+                var user = userService.GetUser(product.MemberName);
+                user.MembershipType = product.MembershipType;
+
+                userService.UpdateUser(user);   
+
                 return (true, $"{NameRequirement}: Upgraded to VIP");
             }
 

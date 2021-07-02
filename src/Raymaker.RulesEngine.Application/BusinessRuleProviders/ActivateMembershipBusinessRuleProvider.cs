@@ -16,17 +16,12 @@
         {
             if (order.Product.GetType() == typeof(Membership))
             {
-                (order.Product as Membership).IsActive = true;
-                var email = (order.Product as Membership).MemberEmail;
-                var userName = (order.Product as Membership).MemberName;
+                var product = order.Product as Membership;
+                product.IsActive = true;    
 
-                this.userService.UpdateUser(new User
-                {
-                    Email = email,
-                    IsActive = true,
-                    MembershipType = MembershipType.Basic,
-                    UserName = userName
-                });
+                var user = userService.GetUser((order.Product as Membership).MemberName);
+                user.IsActive = true;
+                this.userService.UpdateUser(user);
 
                 return (true, $"{NameRequirement}: Membership activated");
             }

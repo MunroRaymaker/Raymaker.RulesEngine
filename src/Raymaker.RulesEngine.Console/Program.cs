@@ -8,20 +8,35 @@ namespace Raymaker.RulesEngine.Console
         static void Main(string[] args)
         {
             System.Console.WriteLine("Business Rules Engine Sample App");
-
-            // Build an order
+            var service = new OrderProcessingService(new UserService());
+            System.Console.WriteLine("\r\nBuy membership");
+            System.Console.WriteLine("==============");
+            
+            // Build an order for a membership
             var order = new Order
             {
                 PackingSlip = "",
                 Payment = new Payment(),
-                Product = new Membership { IsActive = true, MemberEmail = "", Name = "BasicMembership", UnitPrice = 100 }
+                Product = new Membership { IsActive = true, MemberEmail = "test@test.com", Name = "BasicMembership", UnitPrice = 100, MemberName = "foo", MembershipType = MembershipType.Basic }
             };
 
             // Execute rules
-            var service = new OrderProcessingService(new UserService());
             service.Process(order);
 
-            System.Console.WriteLine("Rules processed");
+            // Upgrade membership
+            System.Console.WriteLine("\r\nUpgrade membership");
+            System.Console.WriteLine("==============");
+            var order2 = new Order
+            {
+                PackingSlip = "",
+                Payment = new Payment(),
+                Product = new MembershipUpgrade { IsActive = true, MemberEmail = "test@test.com", Name = "BasicMembership", UnitPrice = 200, MemberName = "foo", MembershipType = MembershipType.VIP }
+            };
+
+            // Execute rules
+            service.Process(order2);
+
+            System.Console.WriteLine("\r\nRules processed.All done.");
         }
     }
 }
