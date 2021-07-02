@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using NSubstitute;
 using Raymaker.RulesEngine.Application;
-using Raymaker.RulesEngine.Application.BusinessRuleProviders;
 using Xunit;
 
 namespace Raymaker.RulesEngine.UnitTests
@@ -110,21 +109,6 @@ namespace Raymaker.RulesEngine.UnitTests
             // Assert
             this.userRepository.Received(2).UpdateUser(Arg.Is<User>(user =>
                user.EmailsSent > 0));
-        }
-
-        [Fact]
-        public void Should_not_send_email_when_order_has_invalid_email()
-        {
-            // Arrange
-            var order = new Order { Product = new MembershipUpgrade { MemberEmail = "testtest.com", MemberName = "foo" } };
-            this.userRepository.GetUser("foo").Returns(new User
-            { MembershipType = MembershipType.VIP, Email = "test@test.com" });
-
-            // Act
-            sut.Process(order);
-
-            // Assert
-            this.userRepository.Received(1).UpdateUser(Arg.Any<User>());
         }
 
         /// <summary>
