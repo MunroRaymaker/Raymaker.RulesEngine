@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Raymaker.RulesEngine.Application
+﻿namespace Raymaker.RulesEngine.Application
 {
     public class UserService : IUserService
     {
@@ -22,6 +16,11 @@ namespace Raymaker.RulesEngine.Application
         public User GetUser(string userName)
         {
             return this.userRepository.GetUser(userName);
+        }
+
+        public bool UpdateAgent(Agent agent)
+        {
+            return this.userRepository.UpdateAgent(agent);
         }
 
         public bool UpdateUser(User user)

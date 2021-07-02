@@ -16,7 +16,6 @@ namespace Raymaker.RulesEngine.Console
             var order = new Order
             {
                 PackingSlip = "",
-                Payment = new Payment(),
                 Product = new Membership { IsActive = true, MemberEmail = "test@test.com", Name = "BasicMembership", UnitPrice = 100, MemberName = "foo", MembershipType = MembershipType.Basic }
             };
 
@@ -29,7 +28,6 @@ namespace Raymaker.RulesEngine.Console
             var order2 = new Order
             {
                 PackingSlip = "",
-                Payment = new Payment(),
                 Product = new MembershipUpgrade { IsActive = true, MemberEmail = "test@test.com", Name = "BasicMembership", UnitPrice = 200, MemberName = "foo", MembershipType = MembershipType.VIP }
             };
 

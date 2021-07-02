@@ -16,8 +16,10 @@
             if (order.Product.GetType() == typeof(Book) ||
                 order.Product.GetType() == typeof(Video))
             {
-                order.Payment = new Payment();
-                return (true, $"{NameRequirement}: Added commission payment");
+                var agent = new Agent{ Name = order.SoldBy, Commission = 10 };
+                var result = this.userService.UpdateAgent(agent);
+
+                return (result, $"{NameRequirement}: Added commission payment");
             }
 
             return (false, $"{NameRequirement}: No action");

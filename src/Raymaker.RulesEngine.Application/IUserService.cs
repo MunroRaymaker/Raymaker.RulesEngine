@@ -4,5 +4,6 @@
     {
         User GetUser(string userName);
         bool UpdateUser(User user);
+        bool UpdateAgent(Agent agent);
     }
 }

@@ -137,13 +137,15 @@ namespace Raymaker.RulesEngine.UnitTests
         public void Should_process_commission_payment_when_order_has_book()
         {
             // Arrange
-            var order = new Order { Product = new Book() };
+            var order = new Order { Product = new Book(), SoldBy = "Agent" };
+            this.userRepository.UpdateAgent(Arg.Any<Agent>()).Returns(true);
 
             // Act
             sut.Process(order);
 
             // Assert
-            order.Payment.Should().NotBeNull();
+            this.userRepository.Received(1).UpdateAgent(Arg.Is<Agent>(agent => 
+                agent.Name == "Agent" && agent.Commission == 10));
         }
     }
 }
