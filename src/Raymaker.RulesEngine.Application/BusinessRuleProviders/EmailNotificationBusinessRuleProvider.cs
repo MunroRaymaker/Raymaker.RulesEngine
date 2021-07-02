@@ -23,11 +23,12 @@
 
             var user = userService.GetUser(product.MemberName);
             user.EmailsSent += 1;
+            user.Email = product.MemberEmail;
 
             // Send email
-            this.userService.UpdateUser(user);
+            var result = this.userService.UpdateUser(user);
 
-            return (true, $"{NameRequirement}: Email was sent");
+            return (result, $"{NameRequirement}: Email was sent");
         }
     }
 }

@@ -21,9 +21,9 @@
                 var user = userService.GetUser(product.MemberName);
                 user.MembershipType = product.MembershipType;
 
-                userService.UpdateUser(user);   
+                var result = userService.UpdateUser(user);   
 
-                return (true, $"{NameRequirement}: Upgraded to VIP");
+                return (result, $"{NameRequirement}: Upgraded to VIP");
             }
 
             return (false, $"{NameRequirement}: No action");

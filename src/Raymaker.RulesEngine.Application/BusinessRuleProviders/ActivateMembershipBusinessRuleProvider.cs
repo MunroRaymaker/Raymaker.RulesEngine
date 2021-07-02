@@ -21,9 +21,9 @@
 
                 var user = userService.GetUser((order.Product as Membership).MemberName);
                 user.IsActive = true;
-                this.userService.UpdateUser(user);
+                var result = this.userService.UpdateUser(user);
 
-                return (true, $"{NameRequirement}: Membership activated");
+                return (result, $"{NameRequirement}: Membership activated");
             }
 
             return (false, $"{NameRequirement}: No action");

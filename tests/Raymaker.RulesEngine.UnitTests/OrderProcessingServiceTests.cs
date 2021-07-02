@@ -80,7 +80,7 @@ namespace Raymaker.RulesEngine.UnitTests
         public void Should_upgrade_membership_when_order_is_membershipupgrade()
         {
             // Arrange
-            var order = new Order { Product = new MembershipUpgrade() { MemberName = "foo", MembershipType = MembershipType.VIP } };
+            var order = new Order { Product = new MembershipUpgrade() { MemberName = "foo", MembershipType = MembershipType.VIP, MemberEmail = "test@test.com" } };
             this.userRepository.GetUser("foo").Returns(new User
             { MembershipType = MembershipType.Basic, Email = "test@test.com" });
 
@@ -110,6 +110,21 @@ namespace Raymaker.RulesEngine.UnitTests
             // Assert
             this.userRepository.Received(2).UpdateUser(Arg.Is<User>(user =>
                user.EmailsSent > 0));
+        }
+
+        [Fact]
+        public void Should_not_send_email_when_order_has_invalid_email()
+        {
+            // Arrange
+            var order = new Order { Product = new MembershipUpgrade { MemberEmail = "testtest.com", MemberName = "foo" } };
+            this.userRepository.GetUser("foo").Returns(new User
+            { MembershipType = MembershipType.VIP, Email = "test@test.com" });
+
+            // Act
+            sut.Process(order);
+
+            // Assert
+            this.userRepository.Received(1).UpdateUser(Arg.Any<User>());
         }
 
         /// <summary>

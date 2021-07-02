@@ -22,7 +22,7 @@ namespace Raymaker.RulesEngine.Application
             foreach (IBusinessRuleProvider rule in rules)
             {
                 var (isSatisfied, message) = rule.Process(order);
-                System.Console.WriteLine(message);
+                System.Console.WriteLine(message + ". Result:" + isSatisfied);
             }
         }
     }
