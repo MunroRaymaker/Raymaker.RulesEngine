@@ -27,5 +27,20 @@ namespace Raymaker.RulesEngine.UnitTests
             // Assert
             result.Should().BeFalse();
         }
+
+        [Theory]
+        [InlineData("test@test.com")]
+        [InlineData("a.b@c.com")]
+        [InlineData("test@test.dk")]
+        public void Should_send_email_when_user_has_valid_email(string email)
+        {
+            // Arrange
+            
+            // Act
+            var result = sut.SendEmail(email, "", "");
+
+            // Assert
+            result.Should().BeTrue();
+        }
     }
 }
