@@ -4,12 +4,12 @@
     {
         public bool HasValidEmail(string email)
         {
-            if (!email.Contains("@") || !email.Contains("."))
+            if (email.Contains("@") && email.Contains("."))
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
     }
 }

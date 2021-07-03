@@ -8,9 +8,9 @@ namespace Raymaker.RulesEngine.Application
         private readonly IEnumerable<IBusinessRuleProvider> rules;
         private readonly BusinessRuleProviderFactory businessRuleProviderFactory;
 
-        public OrderProcessingService(IUserService userService)
+        public OrderProcessingService(IUserService userService, IEmailService emailService)
         {
-            this.businessRuleProviderFactory = new BusinessRuleProviderFactory(userService);
+            this.businessRuleProviderFactory = new BusinessRuleProviderFactory(userService, emailService);
             this.rules = businessRuleProviderFactory.GetProviders();
         }
 

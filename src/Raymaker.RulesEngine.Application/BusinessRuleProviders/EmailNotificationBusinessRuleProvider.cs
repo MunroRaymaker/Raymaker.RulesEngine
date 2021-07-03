@@ -3,10 +3,12 @@
     public class EmailNotificationBusinessRuleProvider : IBusinessRuleProvider
     {
         private readonly IUserService userService;
+        private readonly IEmailService emailService;
 
-        public EmailNotificationBusinessRuleProvider(IUserService userService)
+        public EmailNotificationBusinessRuleProvider(IUserService userService, IEmailService emailService)
         {
             this.userService = userService;
+            this.emailService = emailService;
         }
 
         public string NameRequirement => "EmailNotification";
@@ -21,12 +23,15 @@
                 return (false, $"{NameRequirement}: No action");
             }
 
-            var user = userService.GetUser(product.MemberName);
-            user.EmailsSent += 1;
-            user.Email = product.MemberEmail;
+            var result = this.emailService.SendEmail(product.MemberEmail, "Hello", "Your account was updated.");
 
-            // Send email
-            var result = this.userService.UpdateUser(user);
+            if (result == true)
+            {
+                var user = userService.GetUser(product.MemberName);
+                user.EmailsSent += 1;
+                user.Email = product.MemberEmail;
+                result = this.userService.UpdateUser(user);
+            }
 
             return (result, $"{NameRequirement}: Email was sent");
         }

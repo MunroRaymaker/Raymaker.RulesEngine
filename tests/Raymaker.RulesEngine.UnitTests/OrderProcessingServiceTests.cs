@@ -9,11 +9,12 @@ namespace Raymaker.RulesEngine.UnitTests
     {
         private readonly OrderProcessingService sut;
         private readonly IUserRepository userRepository = Substitute.For<IUserRepository>();
+        private readonly IEmailService emailService = Substitute.For<IEmailService>();
 
         public OrderProcessingServiceTests()
         {
             var userService = new UserService(this.userRepository);
-            sut = new OrderProcessingService(userService);
+            sut = new OrderProcessingService(userService, emailService);
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Raymaker.RulesEngine.UnitTests
 
             // Assert
             (order.Product as Membership).IsActive.Should().BeTrue();
-            this.userRepository.Received(2).UpdateUser(Arg.Is<User>(user =>
+            this.userRepository.Received(1).UpdateUser(Arg.Is<User>(user =>
                 user.MembershipType == MembershipType.Basic &&
                 user.IsActive == true));
         }
@@ -87,7 +88,7 @@ namespace Raymaker.RulesEngine.UnitTests
             sut.Process(order);
 
             // Assert
-            this.userRepository.Received(2).UpdateUser(Arg.Is<User>(user =>
+            this.userRepository.Received(1).UpdateUser(Arg.Is<User>(user =>
                 user.MembershipType == MembershipType.VIP));
         }
 
@@ -102,6 +103,7 @@ namespace Raymaker.RulesEngine.UnitTests
             var order = new Order { Product = new MembershipUpgrade { MemberEmail = "test@test.com", MemberName = "foo" } };
             this.userRepository.GetUser("foo").Returns(new User
             { MembershipType = MembershipType.VIP, Email = "test@test.com" });
+            this.emailService.SendEmail(Arg.Any<string>(),Arg.Any<string>(),Arg.Any<string>()).Returns(true);
 
             // Act
             sut.Process(order);

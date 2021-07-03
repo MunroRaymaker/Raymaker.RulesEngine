@@ -9,12 +9,12 @@ namespace Raymaker.RulesEngine.UnitTests
     public class FactoryTests
     {
         private readonly BusinessRuleProviderFactory factory;
-        private readonly UserService userService;
+        private readonly UserService userService = Substitute.For<UserService>();
+        private readonly IEmailService emailService = Substitute.For<IEmailService>();
 
         public FactoryTests()
         {
-            userService = Substitute.For<UserService>();
-            factory = new BusinessRuleProviderFactory(userService);
+            factory = new BusinessRuleProviderFactory(userService, emailService);
         }
 
         [Fact]

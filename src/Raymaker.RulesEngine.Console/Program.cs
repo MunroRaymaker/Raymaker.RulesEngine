@@ -8,7 +8,7 @@ namespace Raymaker.RulesEngine.Console
         static void Main(string[] args)
         {
             System.Console.WriteLine("Business Rules Engine Sample App");
-            var service = new OrderProcessingService(new UserService());
+            var service = new OrderProcessingService(new UserService(), new EmailService());
             System.Console.WriteLine("\r\nBuy membership");
             System.Console.WriteLine("==============");
             
