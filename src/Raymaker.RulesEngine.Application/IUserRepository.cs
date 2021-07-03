@@ -1,4 +1,6 @@
-﻿namespace Raymaker.RulesEngine.Application
+﻿using Raymaker.RulesEngine.Application.Model;
+
+namespace Raymaker.RulesEngine.Application
 {
     public interface IUserRepository
     {

@@ -1,4 +1,6 @@
-﻿namespace Raymaker.RulesEngine.Application.BusinessRuleProviders
+﻿using Raymaker.RulesEngine.Application.Model;
+
+namespace Raymaker.RulesEngine.Application.BusinessRuleProviders
 {
     public class DefaultBusinessRuleProvider : IBusinessRuleProvider
     {

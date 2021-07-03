@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using NSubstitute;
 using Raymaker.RulesEngine.Application;
+using Raymaker.RulesEngine.Application.Model;
 using Xunit;
 
 namespace Raymaker.RulesEngine.UnitTests

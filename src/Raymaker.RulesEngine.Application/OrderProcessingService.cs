@@ -1,4 +1,5 @@
 ﻿using Raymaker.RulesEngine.Application.BusinessRuleProviders;
+using Raymaker.RulesEngine.Application.Model;
 using System.Collections.Generic;
 
 namespace Raymaker.RulesEngine.Application

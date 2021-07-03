@@ -1,5 +1,6 @@
 ﻿using Raymaker.RulesEngine.Application;
 using Raymaker.RulesEngine.Application.BusinessRuleProviders;
+using Raymaker.RulesEngine.Application.Model;
 
 namespace Raymaker.RulesEngine.Console
 {

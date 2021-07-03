@@ -1,4 +1,4 @@
-﻿namespace Raymaker.RulesEngine.Application
+﻿namespace Raymaker.RulesEngine.Application.Model
 {
     public class Agent
     {
