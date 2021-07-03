@@ -19,7 +19,7 @@ namespace Raymaker.RulesEngine.UnitTests
         [InlineData("testtest.com")]
         [InlineData("testtest")]
         [InlineData("test@test")]
-        public void Should_not_send_email_when_user_has_invalid_email(string email)
+        public void Should_not_update_user_when_user_has_invalid_email(string email)
         {
             // Arrange
             var user = new User
